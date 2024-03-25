@@ -1,0 +1,4 @@
+mqtt:
+    broker: mqtt://mosquitto
+    username: mqtt
+    password: choose_a_secure_password 

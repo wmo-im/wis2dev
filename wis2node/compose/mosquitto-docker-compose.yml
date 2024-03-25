@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0.15
+    container_name: mosquitto
+    volumes:
+      - $HOME/mosquitto:/mosquitto
+      - $HOME/mosquitto/data:/mosquitto/data
+      - $HOME/mosquitto/log:/mosquitto/log
+    labels:
+      - traefik.enable=true
+      - traefik.tcp.routers.mosquitto.entrypoints=mqtts
+      - traefik.tcp.routers.mosquitto.service=mqtt
+      - traefik.tcp.routers.mosquitto.rule=HostSNI(`*`)
+      - traefik.tcp.services.mqtt.loadbalancer.server.port=1883
+      - traefik.tcp.routers.mosquitto.tls=true
+    networks:
+      - traefik
+networks:
+  traefik:
+    external: true

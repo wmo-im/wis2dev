@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  redis:
+    container_name: redis
+    image: redis:latest
+    command: redis-server --save 20 1
+    networks:
+      - traefik
+    ports:
+      - 6379:6379
+    volumes:
+      - $HOME/redis:/data
+networks:
+    traefik:
+      external: true

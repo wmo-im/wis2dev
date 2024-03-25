@@ -1,0 +1,28 @@
+services:
+  traefik:
+    image: traefik:2.11
+    environment:
+      - "INFOMANIAK_ACCESS_TOKEN=a-token-from-infomaniak-allowing-dns-control
+    container_name: traefik
+    networks:
+      - traefik
+    restart: unless-stopped
+    ports:
+      - 8883:8883
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /home/mfdocker/traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - /home/mfdocker/traefik/dynamic:/etc/traefik/dynamic:ro
+      - /home/mfdocker/traefik/acme.json:/acme.json
+    labels:
+      traefik.enable: true
+      traefik.http.routers.traefik.entrypoints: websecure
+      traefik.http.routers.traefik.rule: PathPrefix(`/dashboard`)
+      traefik.http.routers.traefik.tls: true
+      traefik.http.routers.traefik.tls.certresolver: letsencrypt
+      traefik.http.routers.traefik.tls.domains[0].main: test1.wis2dev.io
+      traefik.http.routers.traefik.service: api@internal
+networks:
+  traefik:
+    external: true

@@ -1,0 +1,47 @@
+global:
+  sendAnonymousUsage: false
+  checkNewVersion: false
+
+api:
+  dashboard: true
+
+pilot:
+  dashboard: false
+
+log:
+  level: INFO
+
+accessLog:
+  format: json
+
+serverTransports:
+  insecureSkipVerify: true
+
+providers:
+  docker:
+    endpoint: unix:///var/run/docker.sock
+    exposedByDefault: false
+    watch: true
+    swarmMode: false
+  file:
+    directory: /etc/traefik/dynamic
+    watch: true
+
+entryPoints:
+  mqtts:
+    address: ":8883"
+  websecure:
+    address: ":443"
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: youremail@gmail.com
+      # caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+      caServer: https://acme-v02.api.letsencrypt.org/directory
+      storage: acme.json
+      keyType: EC256
+      dnsChallenge:
+        provider: infomaniak
+        resolvers:
+          - "127.0.0.11:53"

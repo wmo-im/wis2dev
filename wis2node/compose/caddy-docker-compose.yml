@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+    caddy:
+      container_name: caddy
+      image: caddy:2.7.6-alpine
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.caddy.entrypoints=websecure
+        - traefik.http.routers.caddy.service=caddy-svc
+        - traefik.http.routers.caddy.rule=PathPrefix(`/storage/`)
+        - traefik.http.routers.caddy.middlewares=caddy-strip
+        - "traefik.http.middlewares.caddy-strip.stripprefix.prefixes=/storage"
+        - traefik.http.services.caddy-svc.loadbalancer.server.port=80
+        - traefik.http.services.caddy-svc.loadbalancer.server.scheme=http
+        - traefik.http.routers.caddy.tls=true
+      networks:
+        - traefik
+      restart: unless-stopped
+      volumes:
+        - $HOME/caddy/Caddyfile:/etc/caddy/Caddyfile
+        - $HOME/nodered:/srv
+networks:
+    traefik:
+      external: true

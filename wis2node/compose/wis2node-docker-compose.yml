@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+    wis2node:
+      container_name: wis2node
+      image: golfvert/fakewis2node:1.0.4
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.wis2node.entrypoints=websecure
+        - traefik.http.routers.wis2node.service=wis2node-svc
+        - traefik.http.routers.wis2node.middlewares=auth@file
+        - traefik.http.routers.wis2node.rule=PathPrefix(`/admin/`)
+        - traefik.http.services.wis2node-svc.loadbalancer.server.port=1880
+        - traefik.http.services.wis2node-svc.loadbalancer.server.scheme=http
+        - traefik.http.routers.wis2node.tls=true
+      networks:
+        - traefik
+      restart: unless-stopped
+      volumes:
+        - $HOME/wis2node:/storage
+networks:
+    traefik:
+      external: true

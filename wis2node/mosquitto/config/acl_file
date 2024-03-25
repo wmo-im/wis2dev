@@ -1,0 +1,4 @@
+user mqtt
+topic readwrite #
+user everyone
+topic read origin/a/wis2/#
