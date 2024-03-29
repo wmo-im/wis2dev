@@ -1,0 +1,147 @@
+{
+    "id": "urn:wmo:md:io-wis2dev-test1:surface-weather.observations",
+    "conformsTo": [
+        "http://wis.wmo.int/spec/wcmp/2/conf/core"
+    ],
+    "time": {
+        "interval": [
+            "2024-03-29T11:11:11Z",
+            ".."
+        ]
+    },
+    "type": "Feature",
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -142,
+                    28
+                ],
+                [
+                    -142,
+                    82
+                ],
+                [
+                    -52,
+                    82
+                ],
+                [
+                    -52,
+                    28
+                ],
+                [
+                    -142,
+                    28
+                ]
+            ]
+        ]
+    },
+    "properties": {
+        "title": "Surface Weather Observations",
+        "description": "Surface Observations measured at automatic and manual stations (last 30 days)",
+        "themes": [
+            {
+                "concepts": [
+                    {
+                        "id": "Weather"
+                    },
+                    {
+                        "id": "Archives"
+                    },
+                    {
+                        "id": "Precipitation"
+                    },
+                    {
+                        "id": "Air temperature"
+                    },
+                    {
+                        "id": "Humidity"
+                    },
+                    {
+                        "id": "Snow"
+                    },
+                    {
+                        "id": "Wind"
+                    },
+                    {
+                        "id": "Meteorological data"
+                    }
+                ],
+                "scheme": "https://example.org/vocabulary"
+            },
+            {
+                "concepts": [
+                    {
+                        "id": "weather",
+                        "title": "Weather",
+                        "url": "https://codes.wmo.int/wis/topic-hierarchy/earth-system-discipline/weather"
+                    }
+                ],
+                "scheme": "https://codes.wmo.int/wis/topic-hierarchy/earth-system-discipline"
+            }
+        ],
+        "contacts": [
+            {
+                "name": "Example name",
+                "organization": "Test WIS2 Node",
+                "phones": [
+                    {
+                        "value": "+14165551212"
+                    }
+                ],
+                "emails": [
+                    {
+                        "value": "you@example.org"
+                    }
+                ],
+                "addresses": [
+                    {
+                        "deliveryPoint": [
+                            "123 Main Street"
+                        ],
+                        "city": "Toronto",
+                        "administrativeArea": "ON",
+                        "postalCode": "M5V 3L9",
+                        "country": "Canada"
+                    }
+                ],
+                "links": [
+                    {
+                        "rel": "about",
+                        "type": "text/html",
+                        "href": "https://example.org"
+                    }
+                ],
+                "roles": [
+                    "host",
+                    "producer"
+                ]
+            }
+        ],
+        "type": "dataset",
+        "created": "2024-03-29T11:11:11Z",
+        "wmo:dataPolicy": "core"
+    },
+    "links": [
+        {
+            "rel": "stations",
+            "href": "https://example.org/stations.csv",
+            "type": "text/csv",
+            "title": "Stations associated with this dataset"
+        },
+        {
+            "rel": "about",
+            "href": "https://github.com/wmo-im/wis2dev",
+            "type": "text/html",
+            "title": "Documentation"
+        },
+        {
+            "rel": "items",
+            "href": "mqtts://everyone:everyone@globalbroker.meteo.fr:8883",
+            "channel": "origin/a/wis2/io-wis2dev-test1/data/core/weather/surface-based-observations/synop",
+            "type": "application/geo+json",
+            "title": "Data notifications"
+        }
+    ]
+}
