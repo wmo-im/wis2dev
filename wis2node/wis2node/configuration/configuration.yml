@@ -1,25 +1,27 @@
 generator:
-    freq_avg: 1000
-    size_min: 512
-    size_max: 5000000
-    cache_large_files: false
-    cache_size_max: 1000000
-    store_duration: 900
-    skew: 10
-    center_id: io-wis2dev-test1
-    embed_data: true
-    embed_size_max: 8192
+    centre_id: io-wis2dev-test1
     configuration_path: /storage/configuration/
     download_host: https://test1.wis2dev.io
     download_path: /storage/files/
+    freq_avg: 1000
+    size_min: 512
+    size_max: 5000000
+    skew: 10
+    embed_data: true
+    embed_size_max: 8192
+    cache_large_files: false
+    cache_size_max: 1000000
+    store_duration: 900
     data:
     - dataset1:
         type: weather
-        sub_type: surface-based-observations
+        sub_type: surface-based-observations/synop
         data_policy: core
         weight: 100
+        metadata: true
     - dataset2:
         type: ocean
         sub_type: experimental
         data_policy: recommended
         weight: 20
+        metadata: true
