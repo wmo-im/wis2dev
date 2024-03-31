@@ -1,0 +1,107 @@
+{
+    "id": "",
+    "conformsTo": [
+        "http://wis.wmo.int/spec/wcmp/2/conf/core"
+    ],
+    "time": {
+        "interval": [
+            "",
+            ".."
+        ]
+    },
+    "type": "Feature",
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    0,
+                    0
+                ]
+            ]
+        ]
+    },
+    "properties": {
+        "title": "Test data WIS2 development",
+        "description": "Test data to validate WIS2 architecture and components",
+        "themes": [
+            {
+                "concepts": [
+                    {
+                        "id": "WMO"
+                    },
+                    {
+                        "id": "Test"
+                    }
+                ],
+                "scheme": "https://example.org/vocabulary"
+            },
+            {
+                "concepts": [
+                    {
+                        "id": "",
+                        "title": "",
+                        "url": ""
+                    }
+                ],
+                "scheme": ""
+            }
+        ],
+        "contacts": [
+            {
+                "name": "Jules-Édouard Moustic",
+                "organization": "Test WIS2 Node",
+                "phones": [
+                    {
+                        "value": "+3934165551212"
+                    }
+                ],
+                "emails": [
+                    {
+                        "value": "jem@example.org"
+                    }
+                ],
+                "addresses": [
+                    {
+                        "deliveryPoint": [
+                            "123 Presipaute Street"
+                        ],
+                        "city": "Groville",
+                        "administrativeArea": "io",
+                        "postalCode": "ABC DEF",
+                        "country": "Groland"
+                    }
+                ],
+                "links": [
+                    {
+                        "rel": "about",
+                        "type": "text/html",
+                        "href": "https://example.org"
+                    }
+                ],
+                "roles": [
+                    "host",
+                    "producer"
+                ]
+            }
+        ],
+        "type": "dataset",
+        "created": "",
+        "wmo:dataPolicy": ""
+    },
+    "links": [
+        {
+            "rel": "about",
+            "href": "https://github.com/wmo-im/wis2dev",
+            "type": "text/html",
+            "title": "Documentation"
+        },
+        {
+            "rel": "items",
+            "href": "",
+            "channel": "",
+            "type": "application/geo+json",
+            "title": "Data notifications"
+        }
+    ]
+}
