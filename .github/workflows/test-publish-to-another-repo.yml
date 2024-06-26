@@ -26,12 +26,12 @@ jobs:
       - name: update main branch and publish
         run: |
           git config --global user.email "github-actions[bot]"
-          git config --global user.name "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.email "<>"
           echo "test" >> README.md
           if [[ `git status --porcelain` ]]; then
             git add .
             git commit -am "update WIS2 Topic Hierarchy centre identifiers"
-            git push https://$USERNAME:$REPO_KEY@github.com/wmo-im/wis2-topic-hierarchy.git
+            git push origin main
           else
             echo "No changes to push"
           fi
