@@ -22,19 +22,21 @@ jobs:
         with:
           repository: wmo-im/wis2-topic-hierarchy
           ref: main
-          token: ${{secrets.TOKEN}}
+          token: ${{secrets.SECRET_TOKEN}}
       - name: update main branch and publish
         run: |
           git config --global user.email "github-actions[bot]"
           git config user.email "<>"
+          echo "${{ secrets.SECRET_TOKEN }}" > token.txt
+          gh auth login --with-token < token.txt          
           echo "test" >> README.md
           if [[ `git status --porcelain` ]]; then
             git add .
             git commit -am "update WIS2 Topic Hierarchy centre identifiers"
-            git push origin main
+            git push origin test
           else
             echo "No changes to push"
           fi
         env:
-          REPO_KEY: ${{secrets.TOKEN}}
+          REPO_KEY: ${{secrets.SECRET_TOKEN}}
           USERNAME: github-actions[bot]
