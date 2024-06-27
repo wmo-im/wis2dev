@@ -1,0 +1,42 @@
+name: Publish Global Registry centre identifiers to WIS2 Topic Hierarchy
+
+on:
+  push:
+    branches:
+      - test
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+      - name: checkout WTH main branch
+        uses: actions/checkout@v3
+        with:
+          repository: wmo-im/wis2-topic-hierarchy
+          ref: main
+      - name: update main branch and publish
+        run: |
+          git config --global user.email "tomkralidis@gmail.com"
+          git config --global user.name "Tom Kralidis"
+          echo "test" >> README.md
+          if [[ `git status --porcelain` ]]; then
+            git add .
+            git commit -am "update WIS2 Topic Hierarchy centre identifiers"
+            git push origin test
+          else
+            echo "No changes to push"
+          fi
+        env:
+          REPO_KEY: ${{secrets.SECRET_TOKEN}}
+          USERNAME: github-actions[bot]
