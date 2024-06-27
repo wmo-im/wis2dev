@@ -22,11 +22,10 @@ jobs:
         with:
           repository: wmo-im/wis2-topic-hierarchy
           ref: main
-          token: ${{secrets.SECRET_TOKEN}}
       - name: update main branch and publish
         run: |
-          git config --global user.email "github-actions[bot]"
-          git config user.email "<>"
+          git config --global user.email "tomkralidis@gmail.com"
+          git config --global user.name "Tom Kralidis"
           echo "${{ secrets.SECRET_TOKEN }}" > token.txt
           gh auth login --with-token < token.txt          
           echo "test" >> README.md
