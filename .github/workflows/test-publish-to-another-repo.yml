@@ -5,6 +5,9 @@ on:
     branches:
       - test
 
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -26,8 +29,6 @@ jobs:
         run: |
           git config --global user.email "tomkralidis@gmail.com"
           git config --global user.name "Tom Kralidis"
-          echo "${{ secrets.SECRET_TOKEN }}" > token.txt
-          gh auth login --with-token < token.txt          
           echo "test" >> README.md
           if [[ `git status --porcelain` ]]; then
             git add .
